@@ -1,0 +1,229 @@
+'#Reference {BE35B7EB-0D00-44D8-B3A5-0727DF5AD7C1}#1.0#0#
+'#Reference {C9E29001-3D45-11D4-9FF4-00C04FA0D540}#1.0#0#
+'#Language "WWB-COM"
+Option Base 1
+Sub Main
+	' Macro recorded on 24.04.2020 23:29:25
+	Dim AO As AnalysisOutput
+	Dim AWB As Workbook
+
+	Dim S1 As Spreadsheet
+	Set S1 = ActiveDataSet
+
+	Dim newanalysis2 As Analysis
+	Set newanalysis2 = Analysis (sc2dScatterplots, S1)
+	Dim oStaDocs2 As StaDocuments
+	' 2D Scatterplots
+	Dim oGD1 As Scatterplots2D
+	Set oGD1 = newanalysis2.Dialog
+	'Средняя точность
+	oGD1.Variables = "1 | 3 6 9 12 15 18"
+	'oGD1.Variables = "1 | 21 24 27 30 33 36"
+	'oGD1.Variables = "1 | 39 42 45 48 51 54"
+	'oGD1.Variables = "1 | 57 60 63 66 69 72"
+	'oGD1.Variables = "1 | 75 78 81 84 87 90"
+	'oGD1.Variables = "1 | 93 96 99 102 105 108"
+	'oGD1.Variables = "1 | 111 114 117 120 123 126"
+	'Максимальная точность
+	'oGD1.Variables = "1 | 2 5 8 11 14 17"
+	'oGD1.Variables = "1 | 20 23 26 29 32 35"
+	'oGD1.Variables = "1 | 38 41 44 47 50 53"
+	'oGD1.Variables = "1 | 56 59 62 65 68 71"
+	'oGD1.Variables = "1 | 74 77 80 83 86 89"
+	'oGD1.Variables = "1 | 92 95 98 101 104 107"
+	'oGD1.Variables = "1 | 110 113 116 119 122 125"
+	'Минимальная точность
+	'oGD1.Variables = "1 | 4 7 10 13 16 19"
+	'oGD1.Variables = "1 | 22 25 28 31 34 37"
+	'oGD1.Variables = "1 | 40 43 46 49 52 55"
+	'oGD1.Variables = "1 | 58 61 64 67 70 73"
+	'oGD1.Variables = "1 | 76 79 82 85 88 91"
+	'oGD1.Variables = "1 | 94 97 100 103 106 109"
+	'oGD1.Variables = "1 | 112 115 118 121 124 127"
+	oGD1.GraphType = scMultiplePlot
+	oGD1.FitType = scFitLowess
+	oGD1.Ellipse = scEllipseOff
+	oGD1.EllipseCoefficient = 0.95
+	oGD1.RegressionBands = scRegressionBandOff
+	oGD1.RegressionBandsLevel = 0.95
+	oGD1.DisplayCorrelationAndP = False
+	oGD1.DisplayRegressionEquation = False
+	oGD1.DisplayRSquare = False
+	oGD1.EnableMultipleSubsets = False
+
+	With oGD1.CategoryOne
+		.EnableCategory = False
+	End With
+
+	With oGD1.CategoryTwo
+		.EnableCategory = False
+	End With
+
+	With oGD1.Options
+		.DisplayDefaultTitle = True
+		.TitlePosition = scTitleTop
+		.Title = ""
+		.DisplayDefaultFootnote = False
+		.Footnote = ""
+		.DisplayCaseLabels = scCaseLabelSpreadsheet
+		.DisplayCaseLabelsOnOff = False
+		.CaseLabelsVariable = "1"
+		.DisplayTextValuesAsAxisValues = True
+		.CoordinateSystem = scCoordinateStandard
+		.XYAxisPosition = scAxisStandard
+		.DisplayFitExpressionInTitle = scFitOptionInTitle
+		.PolynomialOrder = scQuadraticOrder
+		.LogBase = scLogOptionTenBase
+		.DisplayProgressBar = True
+		.RandomSampling = False
+		.RandomSamplingMethod = scByNumberOfCase
+		.RandomSamplingSubsetSize = 1
+		.AxisType(scX) = scLinearScale
+		.AxisType(scY) = scLinearScale
+		.AxisType(scZ) = scLinearScale
+		.AxisType(scV) = scLinearScale
+		.AutoUpdateType = scSpreadsheetUpdate
+		.SpreadSheetUpdateMethod = scAuto
+		.UpdateFromDialogWhenDataChanged = True
+		.AttachLargeData = True
+	End With
+
+	Set oStaDocs2 = oGD1.Graphs
+
+	If oStaDocs2.Count >= 1 Then
+	Dim oGraphObj_3 As GraphObject
+	Set oGraphObj_3 = oStaDocs2.Item(1).GraphObject
+	Dim oGrWnd_3 As GraphWindow
+	Set oGrWnd_3 = oGraphObj_3.GraphWindow
+	With oGrWnd_3
+		.Background.Color = RGB(255, 255, 255)
+	End With
+	oGraphObj_3.Titles.Remove(1)
+	oGraphObj_3.Titles.Remove(1)
+	oGraphObj_3.Titles.Remove(2)
+	Dim oGL_3 As Layout2D
+	Set oGL_3 = oGraphObj_3.Content
+	With oGL_3
+		Dim oAxis_1_3 As Axis2D
+		Set oAxis_1_3 = .Axes.Axis(scgAx2DScaleX, scgAxPosPrimary)
+		With oAxis_1_3
+			.DisplayMajorGridLine = False
+			Dim oAxisTitle_1_3 As AxisTitle
+			Set oAxisTitle_1_3 = oAxis_1_3.Title
+			With oAxisTitle_1_3
+				.Text = "!~\FT1,,,\b18,,Times New Roman\,\d240,Число категорий"
+				.Font.Size = 12
+				.Font.Face.FaceName = "Times New Roman"
+			End With
+		End With
+		Dim oAxis_2_3 As Axis2D
+		Set oAxis_2_3 = .Axes.Axis(scgAx2DScaleY, scgAxPosPrimary)
+		With oAxis_2_3
+			.DisplayMajorGridLine = False
+			Dim oAxisTitle_2_3 As AxisTitle
+			Set oAxisTitle_2_3 = oAxis_2_3.Title
+			With oAxisTitle_2_3
+				.Text = "!~\FT1,,,\b18,,Times New Roman\,\d240,Средняя точность, %"
+				'.Text = "!~\FT1,,,\b18,,Times New Roman\,\d240,Максимальная точность, %"
+				'.Text = "!~\FT1,,,\b18,,Times New Roman\,\d240,Минимальная точность, %"
+				.Font.Size = 12
+				.Font.Face.FaceName = "Times New Roman"
+			End With
+		End With
+		Dim oPlot_1_3 As Plot2DSimple
+		Set oPlot_1_3 = .Plots(1)
+		With oPlot_1_3
+			.Marker.ForegroundColor = RGB(255, 0, 0)
+			.Marker.Type = scgEmptyRectangle
+			Dim oFit_1_1_3 As Fit2D
+			Set oFit_1_1_3 = .Fits(1)
+			With oFit_1_1_3
+				.Line.ForegroundColor = RGB(255, 0, 0)
+				.Line.Type = scgDash
+			End With
+		End With
+		Dim oPlot_2_3 As Plot2DSimple
+		Set oPlot_2_3 = .Plots(2)
+		With oPlot_2_3
+			.Marker.Type = scgrectangle
+			Dim oFit_1_2_3 As Fit2D
+			Set oFit_1_2_3 = .Fits(1)
+			With oFit_1_2_3
+				.Line.Type = scgDash
+			End With
+		End With
+		Dim oPlot_3_3 As Plot2DSimple
+		Set oPlot_3_3 = .Plots(3)
+		With oPlot_3_3
+			.Marker.ForegroundColor = RGB(0, 176, 80)
+			.Marker.Type = scgEmptyTriangle
+			Dim oFit_1_3_3 As Fit2D
+			Set oFit_1_3_3 = .Fits(1)
+			With oFit_1_3_3
+				.Line.ForegroundColor = RGB(0, 176, 80)
+			End With
+		End With
+		Dim oPlot_4_3 As Plot2DSimple
+		Set oPlot_4_3 = .Plots(4)
+		With oPlot_4_3
+			.Marker.ForegroundColor = RGB(0, 176, 80)
+			.Marker.Type = scgTriangle
+			Dim oFit_1_4_3 As Fit2D
+			Set oFit_1_4_3 = .Fits(1)
+			With oFit_1_4_3
+				.Line.ForegroundColor = RGB(0, 176, 80)
+			End With
+		End With
+		Dim oPlot_5_3 As Plot2DSimple
+		Set oPlot_5_3 = .Plots(5)
+		With oPlot_5_3
+			.Marker.ForegroundColor = RGB(0, 112, 192)
+			.Marker.Type = scgEmptyCircle
+			Dim oFit_1_5_3 As Fit2D
+			Set oFit_1_5_3 = .Fits(1)
+			With oFit_1_5_3
+				.Line.ForegroundColor = RGB(0, 112, 192)
+				.Line.Type = scgDashdot
+			End With
+		End With
+		Dim oPlot_6_3 As Plot2DSimple
+		Set oPlot_6_3 = .Plots(6)
+		With oPlot_6_3
+			.Marker.ForegroundColor = RGB(0, 112, 192)
+			.Marker.Type = scgCircle
+			Dim oFit_1_6_3 As Fit2D
+			Set oFit_1_6_3 = .Fits(1)
+			With oFit_1_6_3
+				.Line.ForegroundColor = RGB(0, 112, 192)
+				.Line.Type = scgDashdot
+			End With
+		End With
+	End With
+	Dim oTextObj_2_3 As TextObject
+	Set oTextObj_2_3 = oGraphObj_3.ExtraObjects.AddFixedText("!~\FT14,6,,\zCPlotLegendObject\,15,2,,,,,16777216, \c0,TF-IDF (\aобуч. выб.)" & vbCrLf & "\zCPlotLegendObject\,16,2,1,,,,16777216, \c0,TF-IDF (\aтест. выб.)" & vbCrLf & "\zCPlotLegendObject\,16,2,2,,,,16777216, \c0,TF-IDF\a \c0,* W2V (\aобуч. выб.)" & vbCrLf & "\zCPlotLegendObject\,16,2,3,,,,16777216, \c0,TF-IDF * W2V (\aтест. выб.)" & vbCrLf & "\zCPlotLegendObject\,16,2,4,,,,16777216, \c0,TF-IDF concat. TF-IDF * W2V (\aобуч. выб.)" & vbCrLf & "\zCPlotLegendObject\,16,2,5,,,,16777216, \c0,TF-IDF concat. TF-IDF * W2V (\aтест. выб.)", 0.01, 0.01)
+	With oTextObj_2_3
+		.Text.LegendOptions = 2048
+		.Parameters.AnchorPosition = 1
+	End With
+
+	Set oGraphObj_3 = Nothing
+	End If
+	Set AO = newanalysis2.RouteOutput(oStaDocs2)
+	AO.Visible = True
+	If AO.HasWorkbook Then
+		Set AWB = AO.Workbook
+	Else
+		Set AWB = Nothing
+	End If
+	Set oStaDocs2 = Nothing
+
+	' Graph Options
+End Sub
+
+'STATISTICA MACRO FILE VERSION 4
+'BEGINPROPERTIES
+'NAME=Macro
+'DESCRIPTION=Macro recorded 4/24/2020
+'LANGUAGE=0
+'SCRIPTING=0
+'ENDPROPERTIES
